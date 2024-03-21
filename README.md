@@ -21,8 +21,14 @@ $api->sendMessage(array('chat_id' => $chat_id, 'text' => 'h hi hi / @ayhan_dev')
 
 
  ## RUN: 
-  - If you need to settle in Sur outside of Iran:
+  - If you need to deploy on a server outside of Iran:
 
 ```php
  $api->setWebhook('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+```
+
+  - If you need to deploy on Iran server:
+
+```php
+$api->setHook('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ```
