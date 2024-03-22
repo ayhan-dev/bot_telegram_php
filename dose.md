@@ -10,6 +10,7 @@
 
   - Mysql:
   ```php
+<?php
 $sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
 $USER = exe_query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
@@ -18,8 +19,10 @@ $from = $USER['from'];
 
  -SQlite:
  ```php
-
- ```
+<?php
+$db = new SQLiteDB('data/database.db');
+$db->query($query);
+```
 
 
 
@@ -38,6 +41,7 @@ $from = $USER['from'];
 -------------------------------------------------------------------------------------------------
   ## LOG json Data:
   ```php
+<?php
 $msg = $api->message();
 $api->log($msg);
 ```
@@ -45,6 +49,8 @@ $api->log($msg);
 
   ## List media methods
    ```php
+<?php
+
 $api->Document();
 $api->Text();
 $api->Photo();
@@ -64,6 +70,7 @@ $api->Forward();
 
 ## LIst AII methods:
    ```php
+<?php
 
     $list_method = [
         'getUpdates',
