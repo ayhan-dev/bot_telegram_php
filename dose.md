@@ -6,6 +6,12 @@
 
 
 
+  ## LOG json Data:
+  ```php
+$msg = $api->message();
+$api->log($msg);
+```
+
 
   ## List media methods
    ```php
