@@ -3,9 +3,32 @@
 
    - The library and training document should be used and listed to come to the [Telegram group](https://t.me/chat_deve) for suggestion.
 
+--------------------------------------------------------------------------------------------
+
+ ## Database LIb:
+  ```php
+$sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
+$USER = exe_query("Query SQl")->fetch_assoc(); // exe query
+$from = $USER['from'];
+
+```
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
   ## LOG json Data:
   ```php
 $msg = $api->message();
