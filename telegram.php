@@ -412,7 +412,41 @@ public function editMessageReplyMarkup(array $query) {
 public function stopPoll(array $query) {
     return $this -> bot('stopPoll', $query);
 }
-
-
-
 }
+#=======================================================================================
+
+
+class Database {
+    private $host = 'localhost';
+    private $username;
+    private $password;
+    private $database;
+    private $connection;
+
+    public function __construct($username, $password, $database) {
+        $this->username = $username;
+        $this->password = $password;
+        $this->database = $database;
+        $this->connection = new mysqli($this->host,$this->username,$this->password,$this->database);
+        if ($this->connection->connect_error) {
+            die("ERROR: ".$this->connection->connect_error);
+        }
+    }
+
+    public function exe_query($query) {
+          try {
+              $result = $this->connection->query($query);
+              return $result;
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return false;
+    }
+}
+
+    public function __destruct() {
+        $this->connection->close();
+    }
+}
+
+
+
