@@ -6,13 +6,20 @@
 --------------------------------------------------------------------------------------------
 
  ## Database LIb:
+
+
+  - Mysql:
   ```php
 $sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
 $USER = exe_query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
-
 ```
 
+
+ -SQlite:
+ ```php
+
+ ```
 
 
 
