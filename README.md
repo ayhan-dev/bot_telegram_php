@@ -32,5 +32,17 @@ $api->sendMessage(array('chat_id' => $chat_id, 'text' => 'h hi hi / @ayhan_dev')
 ```php
 $api->setHook('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ```
+-----------------------------------------------------------------------------------------
 
 
+## Download file from Telegram:
+
+  - Download from external servers:
+```php
+$api->downloadFile($file_id,"data/")
+```
+
+  - Download from Iranian servers:
+```php
+$api->download_File($file_id, "data/");
+```
