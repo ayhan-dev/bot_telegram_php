@@ -17,7 +17,7 @@ $from = $USER['from'];
 ```
 
 
- -SQlite:
+ - SQlite:
  ```php
 <?php
 $db = new SQLiteDB('data/database.db');
