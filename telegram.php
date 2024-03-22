@@ -450,3 +450,27 @@ class Database {
 
 
 
+
+class SQLiteDB {
+    private $connection;
+    public function __construct($file) {
+        $this->connection = new SQLite3($file);
+        if (!$this->connection) {
+            die('Could not connect to the database.');
+        }
+    }
+
+    public function query($sql) {
+    try {
+            $result = $this->connection->query($sql);
+             return $result;
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return false;
+    }}
+
+    public function close() {
+        $this->connection->close();
+    }
+}
+
