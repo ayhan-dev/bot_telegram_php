@@ -358,9 +358,6 @@ public function getChatAdministrators(array $query) {
 public function getChatMemberCount(array $query) {
     return $this -> bot('getChatMemberCount', $query);
 }
-public function getChatMembersCount(array $query) {
-    return $this -> getChatMemberCount($query);
-}
 public function getChatMember(array $query) {
     return $this -> bot('getChatMember', $query);
 }
