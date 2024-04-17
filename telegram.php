@@ -157,7 +157,7 @@ class Database {
     private $database;
     private $connection;
 
-    public function __construct($username, $password, $database) {
+     public function __construct($username, $password, $database) {
         $this->username = $username;
         $this->password = $password;
         $this->database = $database;
@@ -167,7 +167,7 @@ class Database {
         }
     }
 
-    public function exe_query($query) {
+     static function exe_query($query) {
           try {
               $result = $this->connection->query($query);
               return $result;
@@ -177,7 +177,7 @@ class Database {
     }
 }
 
-    public function __destruct() {
+ static function __destruct() {
         $this->connection->close();
     }
 }
@@ -194,7 +194,7 @@ class SQLiteDB {
         }
     }
 
-    public function query($sql) {
+     static function query($sql) {
     try {
             $result = $this->connection->query($sql);
              return $result;
@@ -203,7 +203,7 @@ class SQLiteDB {
         return false;
     }}
 
-    public function close() {
+     static function close() {
         $this->connection->close();
     }
 }
