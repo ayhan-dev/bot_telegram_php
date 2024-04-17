@@ -16,7 +16,7 @@ git clone https://github.com/ayhan-dev/bot_telegram_php.git && cd bot_telegram_p
 
   ```php
 $api = new Telegram();
-$api::sendMessage(array('chat_id' => $chat_id, 'text' => 'h hi hi / @ayhan_dev'));
+$api::bot('sendMessage',array('chat_id' => $chat_id, 'text' => 'h hi hi / @ayhan_dev'));
 ```
 
 
