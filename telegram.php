@@ -40,7 +40,7 @@ class Telegram {
         $requestBody = ['url' => $url];
         return $this ->bot('setWebhook', $requestBody, true);
     }
-    public function deleteWebhook() {
+     static function deleteWebhook() {
         return $this ->bot('deleteWebhook', [], false);
     }
     static function setHook($Url) {
