@@ -12,7 +12,7 @@
   ```php
 <?php
 $sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
-$USER = exe_query("Query SQl")->fetch_assoc(); // exe query
+$USER = $spl::exe_query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
 ```
 
@@ -21,7 +21,7 @@ $from = $USER['from'];
  ```php
 <?php
 $db = new SQLiteDB('data/database.db');
-$db->query($query);
+$db::query($query);
 ```
 
 
@@ -39,34 +39,12 @@ $db->query($query);
 
 
 -------------------------------------------------------------------------------------------------
-  ## LOG json Data:
+  ## LOG json Data: #Removed from class
   ```php
 <?php
 $msg = $api->message();
 $api->log($msg);
 ```
-
-
-  ## List media methods
-   ```php
-<?php
-
-$api->Document();
-$api->Text();
-$api->Photo();
-$api->Video();
-$api->Game();
-$api->Voice();
-$api->Audio();
-$api->Sticker();
-$api->Location();
-$api->VideoMessage();
-$api->Contact();
-$api->Reply();
-$api->Forward();
-```
-
-
 
 ## LIst AII methods:
    ```php
