@@ -12,7 +12,7 @@
   ```php
 <?php
 $sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
-$USER = $spl::exe_query("Query SQl")->fetch_assoc(); // exe query
+$USER = $spl::query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
 ```
 
@@ -26,7 +26,13 @@ $db::query($query);
 
 
 
-
+-------------------------------------------------------------------------------------------------
+## CronJob file: 
+ - Internal CronJob for direct use
+```php
+$cronJob = new CronJob('php /path/to/your/script.php','* * * * *','/tmp/output.txt');
+$cronJob->create();
+```
 
 
 
@@ -39,13 +45,7 @@ $db::query($query);
 
 
 -------------------------------------------------------------------------------------------------
-  ## LOG json Data: #Removed from class
-  ```php
-<?php
-$msg = $api->message();
-$api->log($msg);
-```
-
+ 
 ## LIst AII methods:
    ```php
 <?php
