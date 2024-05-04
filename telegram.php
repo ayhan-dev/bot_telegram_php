@@ -154,6 +154,8 @@ class Telegram {
 #=======================================================================================
 
 
+
+
 class Database {
     private $host = 'localhost';
     private $username;
@@ -171,7 +173,7 @@ class Database {
         }
     }
 
-     static function exe_query($query) {
+     static function query($query) {
           try {
               $result = $this->connection->query($query);
               return $result;
