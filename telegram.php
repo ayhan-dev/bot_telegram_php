@@ -213,3 +213,31 @@ class SQLiteDB {
         self::$connection->close();
     }
 }
+
+
+class CronJob {
+    private $command;
+    private $frequency;
+    private $outputFile;
+    
+    public function __construct($command, $frequency, $outputFile = null) {
+        $this->command = $command;
+        $this->frequency = $frequency;
+        $this->outputFile = $outputFile;
+    }
+    
+    public static function create() {
+        $cronCommand = $this->frequency . " " . $this->command;
+        if ($this->outputFile) {
+            $cronCommand .= " > " . $this->outputFile;
+        }
+
+        $cronJobs = shell_exec('crontab -l');
+        $cronJobsArray = explode("\n", trim($cronJobs));
+        if (!in_array($cronCommand, $cronJobsArray)) {
+            $cronJobsArray[] = $cronCommand;
+            $newCronJobs = implode("\n", $cronJobsArray);
+            shell_exec('echo "' . $newCronJobs . '" | crontab -');
+        }
+    }
+}
