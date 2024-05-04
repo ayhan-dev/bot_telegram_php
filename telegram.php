@@ -154,63 +154,62 @@ class Telegram {
 #=======================================================================================
 
 
-
-
 class Database {
-    private $host = 'localhost';
-    private $username;
-    private $password;
-    private $database;
-    private $connection;
+    private static $host = 'localhost';
+    private static $username;
+    private static $password;
+    private static $database;
+    private static $connection;
 
-     public function __construct($username, $password, $database) {
-        $this->username = $username;
-        $this->password = $password;
-        $this->database = $database;
-        $this->connection = new mysqli($this->host,$this->username,$this->password,$this->database);
-        if ($this->connection->connect_error) {
-            die("ERROR: ".$this->connection->connect_error);
+    public function __construct($username, $password, $database, $host = 'localhost', $port = null, $charset = 'utf8', $socket = null) {
+        self::$username = $username;
+        self::$password = $password;
+        self::$database = $database;
+
+        self::$connection = new mysqli($host, self::$username, self::$password, self::$database, $port, $socket);
+        if (self::$connection->connect_error) {
+            die("ERROR: " . self::$connection->connect_error);
         }
     }
 
-     static function query($query) {
-          try {
-              $result = $this->connection->query($query);
-              return $result;
-    } catch (Exception $e) {
-        error_log($e->getMessage());
-        return false;
+    public static function query($query) {
+        try {
+            $connection = self::$connection;
+            $result = $connection->query($query);
+            return $result;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
+    public function __destruct() {
+        self::$connection->close();
     }
 }
-
- static function __destruct() {
-        $this->connection->close();
-    }
-}
-
-
 
 
 class SQLiteDB {
-    private $connection;
+    private static $connection;
+
     public function __construct($file) {
-        $this->connection = new SQLite3($file);
-        if (!$this->connection) {
+        self::$connection = new SQLite3($file);
+        if (!self::$connection) {
             die('Could not connect to the database.');
         }
     }
 
-     static function query($sql) {
-    try {
-            $result = $this->connection->query($sql);
-             return $result;
-    } catch (Exception $e) {
-        error_log($e->getMessage());
-        return false;
-    }}
+    public static function query($sql) {
+        try {
+            $result = self::$connection->query($sql);
+            return $result;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
 
-     static function close() {
-        $this->connection->close();
+    public static function close() {
+        self::$connection->close();
     }
 }
-
