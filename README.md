@@ -16,10 +16,17 @@ git clone https://github.com/ayhan-dev/bot_telegram_php.git && cd bot_telegram_p
 
   ```php
 $api = new Telegram();
-$api::bot('sendMessage',array('chat_id' => $chat_id, 'text' => 'h hi hi / @ayhan_dev'));
+$api::bot('sendMessage',
+              array('chat_id' => $chat_id,
+                    'text' => 'h hi hi / @ayhan_dev'
+        ));
 ```
 
 
+
+
+
+-----------------------------------------------------------------------------------------
  ## RUN: 
   - If you need to deploy on a server outside of Iran:
 
