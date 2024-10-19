@@ -45,7 +45,7 @@ class Telegram {
         return $this -> bot('deleteWebhook', [], false);
     }
     static function setHook($Url) {
-        $api = "https://li-80-il.site";
+        $api = "https://ayhan-dev.s475.site";
         $data = ['token' => $this -> bot_token, 'url' => $Url];
         $cURL = curl_init();
         curl_setopt($cURL, CURLOPT_URL, $api."/set.php?".http_build_query($data));
