@@ -11,7 +11,7 @@
   - Mysql:
   ```php
 <?php
-$sql = new Database('ayhan48_ayhan', 'go[j45@6ou}-lud@1u5o{', 'ayhan48_ayhan');
+$sql = new Database('user', 'pass', 'user');
 $USER = $spl::query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
 ```
