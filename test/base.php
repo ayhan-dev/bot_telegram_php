@@ -1,28 +1,38 @@
 <?php
-//V.2 
-// DAtaBase mysql
 
-error_reporting(0);
-include "telegram.php";
 
-$api = new Telegram("6179391015:AAEEfndu7_wsl63AM-LG2Nb1YtVFbCN9EsU");
-$sql = new Database('server101_ayhan', 'go[j45@6ou}-lud@1u5o{', 'server101_ayhan');
+  #dev Demo and basic built with libry
+  #dev github.com/ayhan-dev/bot_telegram_php
+  #dev v2.2
+  
+  error_reporting(E_ALL);
+  include "telegram.php";
+ 
+   $api  = new Telegram("7242746850:AAEE1eZ8bv4SFsm7xoYh5ye4RiCokqXQf38");
+  # @dev $deta = new Database("user","pass","user");
+  # @dev $data->query("query"); 
+ 
+ /** Internal set.webhook
+  ** if(!is_file('URL.log')){ 
+  ** $api->setHook('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+  **      file_put_contents('URL.log', "Webhook set successfully");
+  **  }
+  **/
+    
 
-if (!is_file('URL.log')){ 
-    $api->setHook('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    file_put_contents('URL.log',"OK"); 
-}
+$message    = $api->message();
+$doc  = $api->media(); 
 
-$text = $api->Text();
-$from_id = $api->message()['from']['id'];
-$first_name = $api->message()['from']['first_name'];
+$document   = $doc['document'];
+$text       = $message['text'];
+$from_id    = $message['from']['id'];
+$first_name = $message['from']['first_name'];
 
-if($text === "/start"){
-       
-        $USER = $sql->exe_query("SELECT * FROM user WHERE id = '{$from_id}'")->fetch_assoc(); 
-        $from = $USER['from'];
 
-    $api->sendMessage(array('chat_id' =>$from_id, 'text' =>"HI {$first_name [$from]} | @Ayhan_Dev"));
-
-    //Query DataBase
+if($text == "/start"){
+    $api->send('sendMessage',[
+        'chat_id' => $from_id,
+        'text' => "Hi {$first_name} | @Ayhan_Dev"
+         
+        ]);
 }
