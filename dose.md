@@ -12,7 +12,7 @@
   ```php
 <?php
 $sql = new Database('user', 'pass', 'user');
-$USER = $spl::query("Query SQl")->fetch_assoc(); // exe query
+$USER = $spl->query("Query SQl")->fetch_assoc(); // exe query
 $from = $USER['from'];
 ```
 
@@ -21,7 +21,7 @@ $from = $USER['from'];
  ```php
 <?php
 $db = new SQLiteDB('data/database.db');
-$db::query($query);
+$db->query($query);
 ```
 
 
