@@ -8,7 +8,7 @@
   error_reporting(E_ALL);
   include "telegram.php";
  
-   $api  = new Telegram("7242746850:AAEE1eZ8bv4SFsm7xoYh5ye4RiCokqXQf38");
+   $api  = new Telegram("7242746850:4SFsm7xoYh5ye4RiCokqXQf38");
   # @dev $deta = new Database("user","pass","user");
   # @dev $data->query("query"); 
  
